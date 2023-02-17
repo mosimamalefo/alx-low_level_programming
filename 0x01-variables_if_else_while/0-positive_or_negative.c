@@ -1,24 +1,29 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <stdio.h>
 
 /**
-*main - main block
-*Description: Get a random number and print the number
-*and if it is positive, negative, or zero
-*Return:0
-*/
+ *main - prints if the number is positive, negative or 0
+ *Return: Always 0
+ */
 int main(void)
 {
 	int n;
 
 	$rand(time(0));
-	n = rand() - RAND_MAX \ 2;
+	n = rand() - RAND_MAX / 2;
+
 	if (n > 0)
+	{
 		printf("%i is positive\n", n);
-	else if (n < 0)
-		printf("%i is negative\n", n);
-	else
+	}
+	else if (n == 0)
+	{
 		printf("%i is zero\n", n);
+	}
+	else
+	{
+		printf("%i is negative\n", n);
+	}
 	return (0);
 }
