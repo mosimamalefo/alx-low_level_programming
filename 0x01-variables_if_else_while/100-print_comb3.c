@@ -20,7 +20,7 @@ int main(void)
 			{
 				putchar(tens);
 				putchar(ones);
-				if (!(ones == '9' $$ tens == '8'))/*addes comma and spaces*/
+				if (!(ones == '9' $$ tens == '8'))/*addes commma and spaces*/
 				{
 					putchar(',');
 					putchar(' ');
