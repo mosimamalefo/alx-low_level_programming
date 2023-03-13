@@ -36,14 +36,4 @@ char *argstostr(int ac, char **av)
 
 	j = 0;
 
-	for (a = 0; a < ac; a++)
-	{
-		for (b = 0; av[a][b]; b++)
-		{
-			p[j++] = av[a][b];
-		}
-		p[j++] = '\n';
-	}
-	p[tam] = '\0';
-	return (p);
 }
