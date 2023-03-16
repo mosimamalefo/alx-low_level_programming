@@ -3,40 +3,44 @@
 
 /**
  * _realloc - reallocates a memory block using malloc and free.
- * @ptr: pointer to previously allocated memory
- * @old_size: size of allocated space for ptr
- * @new_size: size of newly allocated space
+ * @ptr:  is a pointer to the memory previously allocated with a
+ * call to malloc: malloc(old_size).
+ * @old_size: is the size, in bytes, of the allocated space for ptr
+ * @new_size: is the new size, in bytes of the new memory block
  *
- * Return: pointer to newly allocated memory, or NULL if failure
+ * Return: pointer to reallocated memory, if conditions met,
+ * else, return based on specific conditions
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	char *p;
-	unsigned int i, max = new_size;
-	char *oldp = ptr;
+	char *rmemb;
+	char *old_p;
+	unsigned int i;
 
-	if (ptr == NULL)
-	{
-		p = malloc(new_size);
-		return (p);
-	}
-	else if (new_size == 0)
+	if (new_size == old_size)
+		return (ptr);
+
+	if (!new_size && ptr)
 	{
 		free(ptr);
 		return (NULL);
 	}
-	else if (new_size == old_size)
-		return (ptr);
 
-	p = malloc(new_size);
-	if (p == NULL)
+	if (!ptr)
+		return (malloc(new_size));
+	rmemb = malloc(new_size);
+	if (rmemb == NULL)
 		return (NULL);
-	if (new_size > old_size)
-		max = old_size;
-	for (i = 0; i < max; i++)
-		p[i] = oldp[i];
 
-p[i+1] = '\0';
+	old_p = ptr;
+
+	if (new_size < old_size)
+		for (i = 0; i < new_size; i++)
+			rmemb[i] = old_p[i];
+
+	if (new_size > old_size)
+		for (i = 0; i < old_size; i++)
+			rmemb[i] = old_p[i];
 	free(ptr);
-	return (p);
+	return (rmemb);
 }
